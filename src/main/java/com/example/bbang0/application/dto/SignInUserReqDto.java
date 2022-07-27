@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class SignInUserResDto {
-    private String jwt;
-    private String isBakery;
+public class SignInUserReqDto {
+    private String user_id;
+    private String password;
 }
