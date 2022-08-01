@@ -7,14 +7,15 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class PostBreadResDto {
+public class GetBreadResDto {
+
     private int bread_id;
+    private int bakery_id;
     private String bread_name;
     private String bread_img_url;
     private String bread_content;
     private int bread_count;
     private int bread_price;
+    private String updated_at;
 
-    public PostBreadResDto(int bread_id) {};
 }
-

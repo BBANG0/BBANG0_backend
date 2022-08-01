@@ -18,6 +18,10 @@ public enum BaseResponseStatus {
     INVALID_EMAIL(false,2002,"존재하지 않는 아이디입니다"),
     INVALID_PASSWORD(false,2003,"비밀번호가 일치하지 않습니다"),
 
+    // bakery
+    BAKERYS_EMPTY_BAKERY_ID(false, 2004, "존재하지 않는 베이커리입니다."),
+
+
     /**
      * 4000 : Database, Server 오류
      */
