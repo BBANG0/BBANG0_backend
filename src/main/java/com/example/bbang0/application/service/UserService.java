@@ -1,9 +1,9 @@
 package com.example.bbang0.application.service;
 
 import com.example.bbang0.adapter.persistance.UserDao;
-import com.example.bbang0.application.dto.SignInUserReqDto;
-import com.example.bbang0.application.dto.SignInUserResDto;
-import com.example.bbang0.application.dto.SignUpUserReqDto;
+import com.example.bbang0.application.dto.User.SignInUserReqDto;
+import com.example.bbang0.application.dto.User.SignInUserResDto;
+import com.example.bbang0.application.dto.User.SignUpUserReqDto;
 import com.example.bbang0.config.SHA256;
 import com.example.bbang0.domain.exception.BaseException;
 import com.example.bbang0.domain.model.User;

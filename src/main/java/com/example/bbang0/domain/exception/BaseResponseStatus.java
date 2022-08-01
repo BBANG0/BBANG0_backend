@@ -20,8 +20,10 @@ public enum BaseResponseStatus {
     EXIST_EMAIL(false, 2004, "가입된 이메일입니다."),
     EXIST_ID(false, 2005, "이미 존재하는 아이디입니다."),
     INVALID_EMAIL(false,2006,"존재하지 않는 아이디입니다"),
-    INVALID_PASSWORD(false,2007,"비밀번호가 일치하지 않습니다");
+    INVALID_PASSWORD(false,2007,"비밀번호가 일치하지 않습니다"),
 
+    FAIL_REVIEW_UPDATE(false,2008,"리뷰 수정에 실패했습니다."),
+    FAIL_REVIEW_DELETE(false,2009,"리뷰 삭제에 실패했습니다.");
 
     private final boolean isSuccess;
     private final int code;
