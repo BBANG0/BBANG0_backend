@@ -16,7 +16,15 @@ public enum BaseResponseStatus {
     EXIST_EMAIL(false, 2000, "가입된 이메일입니다."),
     EXIST_ID(false, 2001, "이미 존재하는 아이디입니다."),
     INVALID_EMAIL(false,2002,"존재하지 않는 아이디입니다"),
-    INVALID_PASSWORD(false,2003,"비밀번호가 일치하지 않습니다");
+    INVALID_PASSWORD(false,2003,"비밀번호가 일치하지 않습니다"),
+
+    /**
+     * 4000 : Database, Server 오류
+     */
+    DATABASE_ERROR(false, 4000, "데이터베이스 연결에 실패하였습니다."),
+
+    SERVER_ERROR(false, 4001, "서버와의 연결에 실패하였습니다.");
+
 
 
     private final boolean isSuccess;
