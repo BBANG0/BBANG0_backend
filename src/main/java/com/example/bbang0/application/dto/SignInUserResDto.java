@@ -9,5 +9,6 @@ import lombok.Setter;
 @AllArgsConstructor
 public class SignInUserResDto {
     private String user_id;
+
     private String password;
 }

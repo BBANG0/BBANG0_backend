@@ -15,5 +15,3 @@ public class PostBreadReqDto {
     private int bread_count;
     private int bread_price;
 }
-
-

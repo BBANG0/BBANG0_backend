@@ -28,7 +28,7 @@ public class BreadController {
     @PostMapping("")
     public BaseResponse<PostBreadResDto> createBread(@RequestBody PostBreadReqDto postBreadReqDto) {
         try{
-            // 빵집 유저 맞는지 확인하는 API을 통해 bakeryid를 미리 알아논다. 이 함수는 올바른 위치가 어디일까?
+            // 빵집 유저 맞는지 확인하는 API을 통해 bakeryid를 미리 알아논다.
             int bakery_id = breadService.findBakeryIdByUserId(postBreadReqDto.getUser_id());
 
             PostBreadResDto postBreadResDto = breadService.createBread(bakery_id, postBreadReqDto);
@@ -46,6 +46,7 @@ public class BreadController {
         try{
             List<GetBreadResDto> getBreadRes = breadService.retrieveBreads(bakery_id);
             return new BaseResponse<>(getBreadRes);
+
         } catch(BaseException exception){
             return new BaseResponse<>((exception.getStatus()));
         }
