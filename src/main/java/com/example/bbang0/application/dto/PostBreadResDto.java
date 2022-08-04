@@ -14,6 +14,7 @@ public class PostBreadResDto {
     private String bread_content;
     private int bread_count;
     private int bread_price;
+    private int bread_sale_price;
 
     public PostBreadResDto(int bread_id) {};
 }

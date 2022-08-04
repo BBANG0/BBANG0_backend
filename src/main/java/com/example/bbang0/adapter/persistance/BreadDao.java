@@ -19,9 +19,9 @@ public class BreadDao {
     }
 
 
-    public int insertBread(int bakery_id, String bread_name, String bread_img_url, String bread_content, int bread_price, int bread_count){
-        String insertBreadQuery = "INSERT INTO Bread(bakery_id, bread_name, bread_content, bread_img_url, bread_count, bread_price) VALUES (?, ?, ?, ?, ?, ?)";
-        Object []insertBreadParams = new Object[] {bakery_id, bread_name, bread_content, bread_img_url, bread_count, bread_price};
+    public int insertBread(int bakery_id, String bread_name, String bread_img_url, String bread_content, int bread_count, int bread_price, int bread_sale_price){
+        String insertBreadQuery = "INSERT INTO Bread(bakery_id, bread_name, bread_content, bread_img_url, bread_count, bread_price) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        Object []insertBreadParams = new Object[] {bakery_id, bread_name, bread_content, bread_img_url, bread_count, bread_price, bread_sale_price};
         this.jdbcTemplate.update(insertBreadQuery,
                 insertBreadParams);
 
@@ -50,8 +50,17 @@ public class BreadDao {
                 checkBakeryExistParams);
     }
 
+    public int checkBreadExist(int bread_id) {
+        String checkBreadExistQuery = "SELECT EXISTS(SELECT bread_id from Bread where bread_id = ?)";
+        int checkBreadExistParams = bread_id;
+
+        return this.jdbcTemplate.queryForObject(checkBreadExistQuery,
+                int.class,
+                checkBreadExistParams);
+    }
+
     public List<GetBreadResDto> selectBreads(int bakery_id){
-        String selectBreadsQuery = "SELECT b.bread_id, b.bakery_id, b.bread_name, b.bread_img_url, b.bread_content, b.bread_count, b.bread_price " +
+        String selectBreadsQuery = "SELECT b.bread_id, b.bakery_id, b.bread_name, b.bread_img_url, b.bread_content, b.bread_count, b.bread_price, b.bread_sale_price " +
                 "CASE WHEN timestampdiff(second, b.updated_at, current_timestamp) < 60" +
                 "THEN concat(timestampdiff(second, b.updated_at, current_timestamp), '초 전')" +
                 "WHEN timestampdiff(minute, b.updated_at, current_timestamp) < 60" +
@@ -73,9 +82,29 @@ public class BreadDao {
                         rs.getString("bread_content"),
                         rs.getInt("bread_count"),
                         rs.getInt("bread_price"),
+                        rs.getInt("b.bread_sale_price"),
                         rs.getString("updated_at")
                         ),
                 selectBreadsParams);
     }
 
+    //전체 수정 기능
+    public int updateBread(int bread_id, String bread_name, String bread_img_url, String bread_content, int bread_count, int bread_price, int bread_sale_price){
+        String updateBreadQuery = "UPDATE Bread SET bread_name=?, bread_img_url=?, bread_content=?, bread_count=?, bread_price=?, bread_sale_price=?, WHERE bread_id=?";
+        Object [] updateBreadParams = new Object[] {bread_name, bread_img_url, bread_content, bread_count, bread_price, bread_sale_price };
+        return this.jdbcTemplate.update(updateBreadQuery, updateBreadParams);
+    }
+
+    public int updateBreadCount(int bread_id, int bread_count){
+        String updateBreadQuery = "UPDATE Bread SET bread_count=?, WHERE bread_id=?";
+        Object [] updateBreadParams = new Object[] { bread_id, bread_count };
+        return this.jdbcTemplate.update(updateBreadQuery, updateBreadParams);
+    }
+
+    public int deleteBread(int bread_id){
+        String deleteBreadQuery = "DELETE FROM Bread WHERE bread_id=?";
+        int deleteBreadParams = bread_id;
+        return this.jdbcTemplate.update(deleteBreadQuery, deleteBreadParams);
+    }
 }
+

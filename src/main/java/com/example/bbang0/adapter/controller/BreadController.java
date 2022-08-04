@@ -1,6 +1,7 @@
 package com.example.bbang0.adapter.controller;
 
 import com.example.bbang0.application.dto.GetBreadResDto;
+import com.example.bbang0.application.dto.PatchBreadReqDto;
 import com.example.bbang0.application.dto.PostBreadReqDto;
 import com.example.bbang0.application.dto.PostBreadResDto;
 import com.example.bbang0.application.service.BreadService;
@@ -40,6 +41,7 @@ public class BreadController {
         }
     }
 
+    // 빵 리스트 조회
     @ResponseBody
     @GetMapping("") // 쿼리스트링
     public BaseResponse<List<GetBreadResDto>> getBread(@RequestParam int bakery_id) {
@@ -53,5 +55,48 @@ public class BreadController {
     }
 
 
+    // 빵 전체 수정 기능
+    @ResponseBody
+    @PatchMapping("/{bread_id}")
+    public BaseResponse<String> modifyBread(@PathVariable ("bread_id") int bread_id, @RequestBody PatchBreadReqDto patchBreadReq) {
+        try{
+            breadService.modifyBread(bread_id, patchBreadReq);
+            String result = "게시물 정보 수정을 완료하였습니다.";
 
+            return new BaseResponse<>(result);
+
+        } catch(BaseException exception){
+            return new BaseResponse<>((exception.getStatus()));
+        }
+    }
+
+    // 빵 개수만 수정하는 기능
+    @ResponseBody
+    @PatchMapping("/{bread_id}/count")
+    public BaseResponse<String> modifyBreadCount(@PathVariable ("bread_id") int bread_id, @RequestBody int bread_count) {
+        try{
+            breadService.modifyBreadCount(bread_id, bread_count);
+            String result = "게시물 정보 수정을 완료하였습니다.";
+
+            return new BaseResponse<>(result);
+
+        } catch(BaseException exception){
+            return new BaseResponse<>((exception.getStatus()));
+        }
+    }
+
+
+    @ResponseBody
+    @PatchMapping("/{bread_id}/delete")
+    public BaseResponse<String> deleteBread(@PathVariable ("bread_id") int bread_id) {
+        try{
+            breadService.deleteBread(bread_id);
+            String result = "빵을 삭제하였습니다.";
+
+            return new BaseResponse<>(result);
+
+        } catch(BaseException exception){
+            return new BaseResponse<>((exception.getStatus()));
+        }
+    }
 }

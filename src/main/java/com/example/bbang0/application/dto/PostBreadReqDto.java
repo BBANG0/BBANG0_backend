@@ -14,4 +14,5 @@ public class PostBreadReqDto {
     private String bread_content;
     private int bread_count;
     private int bread_price;
+    private int bread_sale_price;
 }

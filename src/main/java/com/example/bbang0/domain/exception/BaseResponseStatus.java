@@ -19,7 +19,10 @@ public enum BaseResponseStatus {
     INVALID_PASSWORD(false,2003,"비밀번호가 일치하지 않습니다"),
 
     // bakery
-    BAKERYS_EMPTY_BAKERY_ID(false, 2004, "존재하지 않는 베이커리입니다."),
+    BAKERYS_EMPTY_BAKERY_ID(false, 2004, "존재하지 않는 빵집입니다."),
+
+    // bread
+    BREADS_EMPTY_BREAD_ID(false, 2005, "존재하지 않는 빵입니다."),
 
 
     /**
@@ -27,7 +30,20 @@ public enum BaseResponseStatus {
      */
     DATABASE_ERROR(false, 4000, "데이터베이스 연결에 실패하였습니다."),
 
-    SERVER_ERROR(false, 4001, "서버와의 연결에 실패하였습니다.");
+    SERVER_ERROR(false, 4001, "서버와의 연결에 실패하였습니다."),
+
+
+    /**
+     * 5000 : 수정 오류
+     */
+    MODIFY_FAIL_BREAD(false, 5001, "빵 정보 수정에 실패하였습니다."),
+
+
+    /**
+     * 6000 : 삭제 오류
+     */
+    DELETE_FAIL_BREAD(false, 6001, "빵 삭제에 실패하였습니다.");
+
 
 
 
