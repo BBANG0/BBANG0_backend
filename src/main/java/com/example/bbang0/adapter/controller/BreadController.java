@@ -43,8 +43,8 @@ public class BreadController {
 
     // 빵 리스트 조회
     @ResponseBody
-    @GetMapping("") // 쿼리스트링
-    public BaseResponse<List<GetBreadResDto>> getBread(@RequestParam int bakery_id) {
+    @GetMapping("/{bakery_id}")
+    public BaseResponse<List<GetBreadResDto>> getBread(@PathVariable ("bakery_id") int bakery_id) {
         try{
             List<GetBreadResDto> getBreadRes = breadService.retrieveBreads(bakery_id);
             return new BaseResponse<>(getBreadRes);
@@ -61,7 +61,7 @@ public class BreadController {
     public BaseResponse<String> modifyBread(@PathVariable ("bread_id") int bread_id, @RequestBody PatchBreadReqDto patchBreadReq) {
         try{
             breadService.modifyBread(bread_id, patchBreadReq);
-            String result = "게시물 정보 수정을 완료하였습니다.";
+            String result = "빵 정보 수정을 완료하였습니다.";
 
             return new BaseResponse<>(result);
 
@@ -73,10 +73,10 @@ public class BreadController {
     // 빵 개수만 수정하는 기능
     @ResponseBody
     @PatchMapping("/{bread_id}/count")
-    public BaseResponse<String> modifyBreadCount(@PathVariable ("bread_id") int bread_id, @RequestBody int bread_count) {
+    public BaseResponse<String> modifyBreadCount(@PathVariable ("bread_id") int bread_id, @RequestParam int bread_count) {
         try{
             breadService.modifyBreadCount(bread_id, bread_count);
-            String result = "게시물 정보 수정을 완료하였습니다.";
+            String result = "빵 개수 수정을 완료하였습니다.";
 
             return new BaseResponse<>(result);
 
@@ -91,7 +91,7 @@ public class BreadController {
     public BaseResponse<String> deleteBread(@PathVariable ("bread_id") int bread_id) {
         try{
             breadService.deleteBread(bread_id);
-            String result = "빵을 삭제하였습니다.";
+            String result = "bread_id : " + bread_id + "인 빵을 삭제하였습니다.";
 
             return new BaseResponse<>(result);
 

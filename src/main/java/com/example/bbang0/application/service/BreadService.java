@@ -48,6 +48,7 @@ public class BreadService {
     }
 
     public List<GetBreadResDto> retrieveBreads(int bakery_id) throws BaseException {
+        // 존재하지 않는 빵집이라면
         if(checkBakeryExist(bakery_id) == 0) {
             throw new BaseException(BAKERYS_EMPTY_BAKERY_ID);
         }
@@ -110,6 +111,7 @@ public class BreadService {
 
         try {
             int result = breadDao.updateBreadCount(bread_id, bread_count);
+
 
             //업데이트 과정 중 문제가 생겼을 경우
             if(result == 0) {
