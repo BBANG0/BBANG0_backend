@@ -6,6 +6,8 @@ import com.example.bbang0.application.dto.Review.ReviewResDto;
 import com.example.bbang0.domain.exception.BaseException;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 import static com.example.bbang0.domain.exception.BaseResponseStatus.*;
 
 @Service
@@ -18,19 +20,22 @@ public class ReviewService {
         this.jwtService = jwtService;
     }
 
-    public ReviewResDto create(String creatorId, ReviewCreateReqDto reviewCreateReqDto) throws BaseException {
+    public List<ReviewResDto> findAll(String bakeryId) throws BaseException {
+        String userIdxByJwt = jwtService.getUserIdx();
+        return reviewDao.findAll(bakeryId);
+    }
+    public String create(String creatorId, ReviewCreateReqDto reviewCreateReqDto) throws BaseException {
         String userIdxByJwt = jwtService.getUserIdx();
 
         System.out.println("creatorId = " + userIdxByJwt  + ", reviewCreateReqDto = " + reviewCreateReqDto.getTitle());
         reviewDao.create(userIdxByJwt, reviewCreateReqDto);
-        return new ReviewResDto();
+        return "test";
     }
 
-    public void update(String updatorId, int reviewId, ReviewCreateReqDto reviewReqDto) throws BaseException {
+    public void update(String bakeryId, int reviewId, ReviewCreateReqDto reviewReqDto) throws BaseException {
         //updator validation에 대한 처리 필요
 
-        //reviewId 값과 bakeryId도 사실 받아야 함.
-        System.out.println("updatorId = " + updatorId + ", reviewId = " + reviewId + ", reviewReqDto = " + reviewReqDto.getTitle());
+        System.out.println("updatorId = " + bakeryId + ", reviewId = " + reviewId + ", reviewReqDto = " + reviewReqDto.getTitle());
         if (reviewDao.update(reviewId,reviewReqDto)==0){
             throw new BaseException(FAIL_REVIEW_UPDATE);
         }
@@ -39,7 +44,7 @@ public class ReviewService {
     public void delete(int reviewId) throws BaseException {
         String deleterId = jwtService.getUserIdx();
         System.out.println("deleterId = " + deleterId);
-        if(!reviewDao.findById(reviewId, deleterId)){
+        if(!reviewDao.checkId(reviewId, deleterId)){
             throw new BaseException(INVALID_JWT);
         }
         if (reviewDao.delete(reviewId)==0){

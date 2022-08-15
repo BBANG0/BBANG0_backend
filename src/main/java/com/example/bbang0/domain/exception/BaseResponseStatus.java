@@ -23,7 +23,10 @@ public enum BaseResponseStatus {
     INVALID_PASSWORD(false,2007,"비밀번호가 일치하지 않습니다"),
 
     FAIL_REVIEW_UPDATE(false,2008,"리뷰 수정에 실패했습니다."),
-    FAIL_REVIEW_DELETE(false,2009,"리뷰 삭제에 실패했습니다.");
+    FAIL_REVIEW_DELETE(false,2009,"리뷰 삭제에 실패했습니다."),
+    INVALID_BAKERY(false, 2010, "해당 베이커리가 아닙니다."),
+    USER_NO_BAKERY(false, 2010, "등록된 베이커리가 없습니다.");
+
 
     private final boolean isSuccess;
     private final int code;

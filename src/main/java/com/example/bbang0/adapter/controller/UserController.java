@@ -27,4 +27,7 @@ public class UserController {
         return this.userService.signIn(signInUserReqDto);
     }
 
+    public String test(){
+        return "test";
+    }
 }
