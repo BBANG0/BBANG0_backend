@@ -63,4 +63,6 @@ public class UserService {
         String isBakery = user.getIsBakery();
         return new SignInUserResDto(jwt,isBakery);
     }
+
+
 }
