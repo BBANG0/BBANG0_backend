@@ -8,12 +8,8 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class SignInUserResDto {
-<<<<<<< HEAD
     private String user_id;
-
     private String password;
-=======
     private String jwt;
     private String isBakery;
->>>>>>> main
 }
