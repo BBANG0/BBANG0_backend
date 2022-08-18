@@ -14,7 +14,6 @@ public class BakeryService {
     private final BakeryDao bakeryDao;
 
     private final BakeryUserDao bakeryUserDao;
-
     private final JwtService jwtService;
 
     public BakeryService(UserDao userDao, BakeryDao bakeryDao, BakeryUserDao bakeryUserDao, JwtService jwtService) {
@@ -28,6 +27,7 @@ public class BakeryService {
         String userId = jwtService.getUserIdx();
         System.out.println("userId = " + userId + ", bakeryId = " + bakeryId);
 
+        // user 확인하고 해당 user가 빵집에 대한 즐겨찾기 여부도 반환 필요할 듯!! 어떻게 손쉽게 관리할까 고민
         if(userDao.checkUserIsBakery(userId)){
             if (bakeryUserDao.userIsSameBakery(userId,bakeryId)){
                 // 일치하는 베이커리까지는 확인가능

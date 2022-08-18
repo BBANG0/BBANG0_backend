@@ -33,6 +33,15 @@ public class BakeryDao {
                 id
         );
     }
+    public int checkIdExist(String bakery_id){
+        String checkBakeryExistQuery = "select exists(select bakery_id from bakery where bakery_id = ?)";
+        String checkBakeryExistParams = bakery_id;
+        return this.jdbcTemplate.queryForObject(checkBakeryExistQuery,
+                int.class,
+                checkBakeryExistParams);
+    }
+
+
 //    user_id is_bakery True, False 여부 확인하고 만약 True라면 user_bakery 테이블 가야함
 //    public int checkIsBakery(){
 //

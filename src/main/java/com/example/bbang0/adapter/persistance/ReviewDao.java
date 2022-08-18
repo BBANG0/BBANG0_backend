@@ -23,7 +23,7 @@ public class ReviewDao {
 
     // findById 도 만들어야 할듯
     public List<ReviewResDto> findAll(String bakeryId){
-        String selectPostsQuery = " SELECT review_id,\n" +
+        String selectReviewsQuery = " SELECT review_id,\n" +
                 "          title,\n" +
                 "          content,\n" +
                 "          score,\n" +
@@ -31,7 +31,7 @@ public class ReviewDao {
                 "   FROM review\n" +
                 "   WHERE review_bakery_id = ?";
         int selectBakeryParam = Integer.parseInt(bakeryId);
-        return this.jdbcTemplate.query(selectPostsQuery,
+        return this.jdbcTemplate.query(selectReviewsQuery,
                 (rs,rowNum) -> new ReviewResDto(
                         rs.getString("review_id"),
                         rs.getString("title"),

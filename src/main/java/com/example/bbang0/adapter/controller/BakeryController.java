@@ -1,7 +1,7 @@
 package com.example.bbang0.adapter.controller;
 
-import com.example.bbang0.application.dto.Bakery.BakeryResDto;
 import com.example.bbang0.application.service.BakeryService;
+import com.example.bbang0.application.service.FavoriteService;
 import com.example.bbang0.application.service.ReviewService;
 import com.example.bbang0.domain.exception.BaseException;
 import org.springframework.http.ResponseEntity;
@@ -17,10 +17,12 @@ public class BakeryController {
     private final BakeryService bakeryService;
     /*private fianl BreadSerice breadService*/
     private final ReviewService reviewService;
+    private final FavoriteService favoriteService;
 
-    public BakeryController(BakeryService bakeryService, ReviewService reviewService) {
+    public BakeryController(BakeryService bakeryService, ReviewService reviewService, FavoriteService favoriteService) {
         this.bakeryService = bakeryService;
         this.reviewService = reviewService;
+        this.favoriteService = favoriteService;
     }
 
     // 하나의 배너를 통한 빵집 페이지
@@ -31,6 +33,7 @@ public class BakeryController {
         Map<String, Object> bakery = new HashMap<>();
         bakery.put("bakeryContent",bakeryService.findById(bakeryId));
         bakery.put("bakeryReview", reviewService.findAll(bakeryId));
+        bakery.put("favorite", favoriteService.favoriteOrNot(bakeryId));
 
         return ResponseEntity.ok().body(bakery);
     }

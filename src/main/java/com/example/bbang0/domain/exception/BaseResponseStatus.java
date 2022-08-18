@@ -16,7 +16,7 @@ public enum BaseResponseStatus {
     REQUEST_ERROR(false, 2000, "입력값을 확인해주세요."),
     EMPTY_JWT(false, 2001, "JWT를 입력해주세요."),
     INVALID_JWT(false, 2002, "유효하지 않은 JWT입니다."),
-    INVALID_USER_JWT(false,2003,"권한이 없는 유저의 접근입니다."),
+    INVALID_USER(false,2003,"유효하지 않은 사용자입니다."),
     EXIST_EMAIL(false, 2004, "가입된 이메일입니다."),
     EXIST_ID(false, 2005, "이미 존재하는 아이디입니다."),
     INVALID_EMAIL(false,2006,"존재하지 않는 아이디입니다"),
@@ -25,7 +25,9 @@ public enum BaseResponseStatus {
     FAIL_REVIEW_UPDATE(false,2008,"리뷰 수정에 실패했습니다."),
     FAIL_REVIEW_DELETE(false,2009,"리뷰 삭제에 실패했습니다."),
     INVALID_BAKERY(false, 2010, "해당 베이커리가 아닙니다."),
-    USER_NO_BAKERY(false, 2010, "등록된 베이커리가 없습니다.");
+    USER_NO_BAKERY(false, 2010, "등록된 베이커리가 없습니다."),
+
+    TEST_FAIL(false,3000, "잘못된 요청입니다.");
 
 
     private final boolean isSuccess;

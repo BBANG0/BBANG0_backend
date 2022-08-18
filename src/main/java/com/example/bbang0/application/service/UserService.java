@@ -63,4 +63,12 @@ public class UserService {
         String isBakery = user.getIsBakery();
         return new SignInUserResDto(jwt,isBakery);
     }
+
+    // CommonService 인터페이스를 통해 추상 valid를 만들면 user, bakery, bread 다 확인 가능할 것 같네
+    public boolean userIsValid(String userId) throws BaseException {
+        if( userDao.checkIdExist(userId)==0){
+            throw new BaseException(INVALID_USER);
+        }
+        return true;
+    }
 }
