@@ -1,6 +1,7 @@
 package com.example.bbang0.adapter.persistance;
 
 import com.example.bbang0.application.dto.*;
+import com.example.bbang0.domain.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -25,6 +26,22 @@ public class UserDao {
 
 //    public SignUpUserReqDto signIn( SignInUserResDto signInUserResDto){
 //    }
+
+    public User getUser(SignInUserReqDto signInUserReqDto) {
+        String getPwdQuery = "select user_id, password, user_name, user_email, is_bakery from User where user_id = ?";
+        String getUserIdParam = signInUserReqDto.getUser_id();
+
+        return this.jdbcTemplate.queryForObject(getPwdQuery,
+                (rs,rowNum)-> new User(
+                        rs.getString("user_id"),
+                        rs.getString("password"),
+                        rs.getString("user_name"),
+                        rs.getString("user_email"),
+                        rs.getString("is_bakery")
+                ),
+                getUserIdParam
+        );
+    }
 
     public int checkIdExist(String user_id){
         String checkUserExistQuery = "select exists(select user_id from User where user_id = ?)";

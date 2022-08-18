@@ -7,13 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class SignInUserResDto {
-<<<<<<< HEAD
+public class SignInUserReqDto {
     private String user_id;
-
     private String password;
-=======
-    private String jwt;
-    private String isBakery;
->>>>>>> main
 }

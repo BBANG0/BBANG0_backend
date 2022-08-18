@@ -38,4 +38,8 @@ out/
 
 ### Security ###
 Secret.java
+<<<<<<< HEAD
 application.yml
+=======
+application.yml
+>>>>>>> main

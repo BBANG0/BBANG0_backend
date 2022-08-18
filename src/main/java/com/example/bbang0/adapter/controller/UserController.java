@@ -1,11 +1,10 @@
 package com.example.bbang0.adapter.controller;
 
+import com.example.bbang0.application.dto.SignInUserReqDto;
 import com.example.bbang0.application.dto.SignInUserResDto;
 import com.example.bbang0.application.dto.SignUpUserReqDto;
 import com.example.bbang0.application.service.UserService;
 import com.example.bbang0.domain.exception.BaseException;
-import com.example.bbang0.domain.exception.BaseResponse;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -20,13 +19,13 @@ public class UserController {
     @ResponseBody
     @PostMapping("/sign-up")
     public SignUpUserReqDto signUp(@RequestBody SignUpUserReqDto signupUserReqDto) throws BaseException {
+        System.out.println("test" );
         return this.userService.signUp(signupUserReqDto);
     }
 
     @PostMapping("/sign-in")
-    public String signIn(@RequestBody SignInUserResDto signInUserResDto) throws BaseException {
-        return this.userService.signIn(signInUserResDto);
+    public SignInUserResDto signIn(@RequestBody SignInUserReqDto signInUserReqDto) throws BaseException {
+        return this.userService.signIn(signInUserReqDto);
     }
-
 
 }
