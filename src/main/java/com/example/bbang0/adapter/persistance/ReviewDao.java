@@ -50,9 +50,8 @@ public class ReviewDao {
                                 ,rs.getString("review_id"))),selectBakeryParam);
     }
 
-    public ReviewCreateReqDto create(String creatorId, ReviewCreateReqDto reviewReqDto){
+    public ReviewCreateReqDto create(String creatorId, int bakeryId, ReviewCreateReqDto reviewReqDto){
         // for test
-        int bakeryId = 1;
         String createReviewQuery = "insert into review (review_user_id,review_bakery_id, title, content, score ) VALUES (?,?,?,?,? )";
         Object[] createReviewParmas = new Object[]{creatorId,bakeryId,reviewReqDto.getTitle(),reviewReqDto.getContent(),reviewReqDto.getScore()};
         this.jdbcTemplate.update(createReviewQuery, createReviewParmas);

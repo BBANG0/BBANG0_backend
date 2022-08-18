@@ -29,10 +29,9 @@ public class ReviewController {
 
     @PostMapping("")
     public String create(
-            @AuthenticationPrincipal String creatorId,
             @RequestParam(value="bakery") int bakeryId,
             @RequestBody ReviewCreateReqDto reviewCreateReqDto) throws BaseException {
-        reviewService.create(creatorId, reviewCreateReqDto);
+        reviewService.create(bakeryId, reviewCreateReqDto);
         return "리뷰가 생성되었습니다";
     }
 
@@ -58,6 +57,4 @@ public class ReviewController {
 //    public String addImage(){
 //
 //    }
-
-
 }

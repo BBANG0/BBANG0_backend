@@ -24,11 +24,11 @@ public class ReviewService {
         String userIdxByJwt = jwtService.getUserIdx();
         return reviewDao.findAll(bakeryId);
     }
-    public String create(String creatorId, ReviewCreateReqDto reviewCreateReqDto) throws BaseException {
+    public String create(int bakeryId, ReviewCreateReqDto reviewCreateReqDto) throws BaseException {
         String userIdxByJwt = jwtService.getUserIdx();
 
         System.out.println("creatorId = " + userIdxByJwt  + ", reviewCreateReqDto = " + reviewCreateReqDto.getTitle());
-        reviewDao.create(userIdxByJwt, reviewCreateReqDto);
+        reviewDao.create(userIdxByJwt,bakeryId, reviewCreateReqDto);
         return "test";
     }
 
