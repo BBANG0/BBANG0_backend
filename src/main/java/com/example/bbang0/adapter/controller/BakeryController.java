@@ -1,6 +1,7 @@
 package com.example.bbang0.adapter.controller;
 
 import com.example.bbang0.application.service.BakeryService;
+import com.example.bbang0.application.service.BreadService;
 import com.example.bbang0.application.service.FavoriteService;
 import com.example.bbang0.application.service.ReviewService;
 import com.example.bbang0.domain.exception.BaseException;
@@ -15,12 +16,13 @@ import java.util.Map;
 public class BakeryController {
 
     private final BakeryService bakeryService;
-    /*private fianl BreadSerice breadService*/
+    private final BreadService breadService;
     private final ReviewService reviewService;
     private final FavoriteService favoriteService;
 
-    public BakeryController(BakeryService bakeryService, ReviewService reviewService, FavoriteService favoriteService) {
+    public BakeryController(BakeryService bakeryService, BreadService breadService, ReviewService reviewService, FavoriteService favoriteService) {
         this.bakeryService = bakeryService;
+        this.breadService = breadService;
         this.reviewService = reviewService;
         this.favoriteService = favoriteService;
     }
@@ -34,6 +36,7 @@ public class BakeryController {
         bakery.put("bakeryContent",bakeryService.findById(bakeryId));
         bakery.put("bakeryReview", reviewService.findAll(bakeryId));
         bakery.put("favorite", favoriteService.favoriteOrNot(bakeryId));
+        bakery.put("bread", breadService.retrieveBreads(Integer.parseInt(bakeryId)));
 
         return ResponseEntity.ok().body(bakery);
     }

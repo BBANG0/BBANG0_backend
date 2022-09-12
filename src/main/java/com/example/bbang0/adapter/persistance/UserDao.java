@@ -67,7 +67,6 @@ public class UserDao {
     public boolean checkUserIsBakery(String user_id){
         // db에 is_bakery를 boolea으로 처리하던지 or String으로 할거면 저장 형식을 고정해 놔야 한다.
         // 응 , 실제로 없어서 에러 터졋어
-        System.out.println("UserDao.checkUserIsBakery");
         String yes = "Yes";
         String checkUserIsBakeryQuery = "select is_bakery from user where user_id =? ";
         return yes.equals(this.jdbcTemplate.queryForObject(checkUserIsBakeryQuery,

@@ -42,7 +42,7 @@ public class FavoriteService {
         String userIdByJwt = jwtService.getUserIdx();
         FavoriteCreateReqDto favoriteCreateReqDto = new FavoriteCreateReqDto(userIdByJwt, bakeryId, Boolean.TRUE);
         if ( userDao.checkIdExist(favoriteCreateReqDto.getUser_id())==0){
-            throw new BaseException(INVALID_USER);
+            throw new BaseException(INVALID_USER_JWT);
         }
         if ( bakeryDao.checkIdExist(favoriteCreateReqDto.getBakery_id())==0){
             throw new BaseException(USER_NO_BAKERY);
@@ -60,7 +60,7 @@ public class FavoriteService {
         FavoriteCreateReqDto favoriteCreateReqDto = new FavoriteCreateReqDto(userIdByJwt, bakeryId, Boolean.TRUE);
         //user, bakery가 유효한가?
         if ( userDao.checkIdExist(favoriteCreateReqDto.getUser_id())==0){
-            throw new BaseException(INVALID_USER);
+            throw new BaseException(INVALID_USER_JWT);
         }
         if ( bakeryDao.checkIdExist(favoriteCreateReqDto.getBakery_id())==0){
             throw new BaseException(USER_NO_BAKERY);

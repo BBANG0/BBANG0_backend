@@ -35,7 +35,6 @@ public class ReviewService {
     public void update(String bakeryId, int reviewId, ReviewCreateReqDto reviewReqDto) throws BaseException {
         //updator validation에 대한 처리 필요
 
-        System.out.println("updatorId = " + bakeryId + ", reviewId = " + reviewId + ", reviewReqDto = " + reviewReqDto.getTitle());
         if (reviewDao.update(reviewId,reviewReqDto)==0){
             throw new BaseException(FAIL_REVIEW_UPDATE);
         }
