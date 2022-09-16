@@ -13,36 +13,30 @@ import static com.example.bbang0.domain.exception.BaseResponseStatus.*;
 @Service
 public class ReviewService {
     private final ReviewDao reviewDao;
-    private final JwtService jwtService;
 
     public ReviewService(ReviewDao reviewDao, JwtService jwtService) {
         this.reviewDao = reviewDao;
-        this.jwtService = jwtService;
     }
 
     public List<ReviewResDto> findAll(String bakeryId) throws BaseException {
-        String userIdxByJwt = jwtService.getUserIdx();
         return reviewDao.findAll(bakeryId);
     }
-    public String create(int bakeryId, ReviewCreateReqDto reviewCreateReqDto) throws BaseException {
-        String userIdxByJwt = jwtService.getUserIdx();
-
-        System.out.println("creatorId = " + userIdxByJwt  + ", reviewCreateReqDto = " + reviewCreateReqDto.getTitle());
+    public String create(int bakeryId, String userIdxByJwt, ReviewCreateReqDto reviewCreateReqDto){
         reviewDao.create(userIdxByJwt,bakeryId, reviewCreateReqDto);
         return "test";
     }
 
-    public void update(String bakeryId, int reviewId, ReviewCreateReqDto reviewReqDto) throws BaseException {
+    public void update(int reviewId, String updaterId, ReviewCreateReqDto reviewReqDto) throws BaseException {
         //updator validation에 대한 처리 필요
-
+        if(!reviewDao.checkId(reviewId, updaterId)){
+            throw new BaseException(INVALID_JWT);
+        }
         if (reviewDao.update(reviewId,reviewReqDto)==0){
             throw new BaseException(FAIL_REVIEW_UPDATE);
         }
     }
 
-    public void delete(int reviewId) throws BaseException {
-        String deleterId = jwtService.getUserIdx();
-        System.out.println("deleterId = " + deleterId);
+    public void delete(int reviewId, String deleterId) throws BaseException {
         if(!reviewDao.checkId(reviewId, deleterId)){
             throw new BaseException(INVALID_JWT);
         }

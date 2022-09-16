@@ -23,10 +23,7 @@ public class BakeryService {
         this.jwtService = jwtService;
     }
 
-    public BakeryResDto findById( String bakeryId) throws BaseException {
-        String userId = jwtService.getUserIdx();
-        System.out.println("userId = " + userId + ", bakeryId = " + bakeryId);
-
+    public BakeryResDto findById( String bakeryId, String userId) throws BaseException {
         // user 확인하고 해당 user가 빵집에 대한 즐겨찾기 여부도 반환 필요할 듯!! 어떻게 손쉽게 관리할까 고민
         if(userDao.checkUserIsBakery(userId)){
             if (bakeryUserDao.userIsSameBakery(userId,bakeryId)){

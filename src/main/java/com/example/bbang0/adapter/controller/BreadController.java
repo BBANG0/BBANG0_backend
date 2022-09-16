@@ -5,11 +5,9 @@ import com.example.bbang0.application.dto.PatchBreadReqDto;
 import com.example.bbang0.application.dto.PostBreadReqDto;
 import com.example.bbang0.application.dto.PostBreadResDto;
 import com.example.bbang0.application.service.BreadService;
+import com.example.bbang0.application.service.JwtService;
 import com.example.bbang0.domain.exception.BaseException;
 import com.example.bbang0.domain.exception.BaseResponse;
-import com.example.bbang0.domain.exception.BaseResponseStatus;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,11 +15,13 @@ import java.util.List;
 @RestController
 @RequestMapping("/breads")
 public class BreadController {
-    @Autowired
-    private final BreadService breadService;
 
-    public BreadController(BreadService breadService){
+    private final BreadService breadService;
+    private final JwtService jwtService;
+
+    public BreadController(BreadService breadService, JwtService jwtService){
         this.breadService = breadService;
+        this.jwtService = jwtService;
     }
 
 
