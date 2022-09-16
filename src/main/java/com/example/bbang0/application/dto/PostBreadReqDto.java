@@ -8,7 +8,6 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class PostBreadReqDto {
-    private String user_id;
     private String bread_name;
     private String bread_img_url;
     private String bread_content;

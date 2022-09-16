@@ -43,16 +43,19 @@ public enum BaseResponseStatus {
     /**
      * 6000 : 삭제 오류
      */
-    DELETE_FAIL_BREAD(false, 6001, "빵 삭제에 실패하였습니다.");
+    DELETE_FAIL_BREAD(false, 6001, "빵 삭제에 실패하였습니다."),
 
     REQUEST_ERROR(false, 7000, "입력값을 확인해주세요."),
     EMPTY_JWT(false, 7001, "JWT를 입력해주세요."),
     INVALID_JWT(false, 7002, "유효하지 않은 JWT입니다."),
-    INVALID_USER_JWT(false,7003,"권한이 없는 유저의 접근입니다."),
-    EXIST_EMAIL(false, 7004, "가입된 이메일입니다."),
-    EXIST_ID(false, 7005, "이미 존재하는 아이디입니다."),
-    INVALID_EMAIL(false,7006,"존재하지 않는 아이디입니다"),
-    INVALID_PASSWORD(false,7007,"비밀번호가 일치하지 않습니다");
+    INVALID_USER_JWT(false,7003,"유효하지 않은 사용자입니다."),
+    FAIL_REVIEW_UPDATE(false,7008,"리뷰 수정에 실패했습니다."),
+    FAIL_REVIEW_DELETE(false,7009,"리뷰 삭제에 실패했습니다."),
+    INVALID_BAKERY(false, 7010, "해당 베이커리가 아닙니다."),
+    USER_NO_BAKERY(false, 7011, "등록된 베이커리가 없습니다."),
+
+    TEST_FAIL(false,8000, "잘못된 요청입니다.");
+
 
 
     private final boolean isSuccess;

@@ -1,9 +1,9 @@
 package com.example.bbang0.application.service;
 
 import com.example.bbang0.adapter.persistance.UserDao;
-import com.example.bbang0.application.dto.SignInUserReqDto;
-import com.example.bbang0.application.dto.SignInUserResDto;
-import com.example.bbang0.application.dto.SignUpUserReqDto;
+import com.example.bbang0.application.dto.User.SignInUserReqDto;
+import com.example.bbang0.application.dto.User.SignInUserResDto;
+import com.example.bbang0.application.dto.User.SignUpUserReqDto;
 import com.example.bbang0.config.SHA256;
 import com.example.bbang0.domain.exception.BaseException;
 import com.example.bbang0.domain.model.User;
@@ -61,8 +61,15 @@ public class UserService {
         String userIdx = user.getUserIdx();
         String jwt = jwtService.createJwt(userIdx);
         String isBakery = user.getIsBakery();
-        return new SignInUserResDto(jwt,isBakery);
+        return new SignInUserResDto(userIdx,jwt,isBakery);
     }
 
+    // CommonService 인터페이스를 통해 추상 valid를 만들면 user, bakery, bread 다 확인 가능할 것 같네
+    public boolean userIsValid(String userId) throws BaseException {
+        if( userDao.checkIdExist(userId)==0){
+            throw new BaseException(INVALID_USER_JWT);
+        }
+        return true;
+    }
 
 }

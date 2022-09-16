@@ -1,4 +1,4 @@
-package com.example.bbang0.application.dto;
+package com.example.bbang0.application.dto.User;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,7 +9,6 @@ import lombok.Setter;
 @AllArgsConstructor
 public class SignInUserResDto {
     private String user_id;
-    private String password;
     private String jwt;
     private String isBakery;
 }
