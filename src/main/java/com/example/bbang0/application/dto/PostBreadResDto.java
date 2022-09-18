@@ -2,11 +2,13 @@ package com.example.bbang0.application.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 public class PostBreadResDto {
     private int bread_id;
     private String bread_name;
