@@ -21,10 +21,10 @@ import java.util.List;
 
 @Configuration
 @EnableSwagger2
-public class SwaggerConfig extends WebMvcConfigurationSupport {
+public class SwaggerConfig {
     private static final String API_NAME = "Bbang0 API";
     private static final String API_VERSION = "0.0.1";
-    private static final String API_DESCRIPTION = "Bbang0 API 명세서";
+    private static final String API_DESCRIPTION = "Bbang0 API 명세서입니다.";
 
     @Bean
     public Docket api() {
@@ -36,11 +36,11 @@ public class SwaggerConfig extends WebMvcConfigurationSupport {
                 .required(false)
                 .build();
 
-        List<Parameter> globalParamters = new ArrayList<>();
-        globalParamters.add(parameterBuilder);
+        List<Parameter> globalParameters = new ArrayList<>();
+        globalParameters.add(parameterBuilder);
 
         return new Docket(DocumentationType.SWAGGER_2)
-                .globalOperationParameters(globalParamters)
+                .globalOperationParameters(globalParameters)
                 .apiInfo(apiInfo())
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.example.bbang0.adapter.controller"))
@@ -56,11 +56,4 @@ public class SwaggerConfig extends WebMvcConfigurationSupport {
                 .build();
     }
 
-
-    @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/swagger-ui.html").addResourceLocations("classpath:/META-INF/resources/");
-        registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
-        super.addResourceHandlers(registry);
-    }
 }

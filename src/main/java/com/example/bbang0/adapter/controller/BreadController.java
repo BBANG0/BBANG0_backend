@@ -8,12 +8,15 @@ import com.example.bbang0.application.service.BreadService;
 import com.example.bbang0.domain.exception.BaseException;
 import com.example.bbang0.domain.exception.BaseResponse;
 import com.example.bbang0.domain.exception.BaseResponseStatus;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Api(tags = {"breads"})
 @RestController
 @RequestMapping("/breads")
 public class BreadController {
@@ -25,6 +28,7 @@ public class BreadController {
     }
 
 
+    @ApiOperation(value = "빵 추가", notes= "새로운 빵 정보를 입력하면 해당 유저 아이디를 검사하여 빵집을 찾고, 빵집에 빵 등록")
     @ResponseBody
     @PostMapping("")
     public BaseResponse<PostBreadResDto> createBread(@RequestBody PostBreadReqDto postBreadReqDto) {
@@ -41,7 +45,7 @@ public class BreadController {
         }
     }
 
-    // 빵 리스트 조회
+    @ApiOperation(value="베이커리의 모든 빵 조회", notes= "해당 베이커리의 모든 빵을 조회")
     @ResponseBody
     @GetMapping("/{bakery_id}")
     public BaseResponse<List<GetBreadResDto>> getBread(@PathVariable ("bakery_id") int bakery_id) {
@@ -55,7 +59,7 @@ public class BreadController {
     }
 
 
-    // 빵 전체 수정 기능
+    @ApiOperation(value= "빵 모든 정보 수정", notes="해당 빵의 모든 정보를 수정")
     @ResponseBody
     @PatchMapping("/{bread_id}")
     public BaseResponse<String> modifyBread(@PathVariable ("bread_id") int bread_id, @RequestBody PatchBreadReqDto patchBreadReq) {
@@ -70,7 +74,7 @@ public class BreadController {
         }
     }
 
-    // 빵 개수만 수정하는 기능
+    @ApiOperation(value="빵 개수만 수정", notes="파라미터를 통해 해당 빵의 수정할 빵 개수를 입력 받고 수정")
     @ResponseBody
     @PatchMapping("/{bread_id}/count")
     public BaseResponse<String> modifyBreadCount(@PathVariable ("bread_id") int bread_id, @RequestParam int bread_count) {
@@ -86,6 +90,7 @@ public class BreadController {
     }
 
 
+    @ApiOperation(value="빵 삭제", notes= "해당 빵을 빵집에서 삭제")
     @ResponseBody
     @PatchMapping("/{bread_id}/delete")
     public BaseResponse<String> deleteBread(@PathVariable ("bread_id") int bread_id) {
