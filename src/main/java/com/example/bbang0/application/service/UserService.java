@@ -61,7 +61,7 @@ public class UserService {
         String userIdx = user.getUserIdx();
         String jwt = jwtService.createJwt(userIdx);
         String isBakery = user.getIsBakery();
-        return new SignInUserResDto(jwt,isBakery);
+        return new SignInUserResDto(signInUserReqDto.getUser_id(), pwd, jwt, isBakery);
     }
 
 
